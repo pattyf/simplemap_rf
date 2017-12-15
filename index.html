@@ -110,8 +110,8 @@
   onEachFeature: function(feature, layer) {
 	  var popupContent = "<strong> " + feature.properties.Title + "</strong>";
 	  
-	  popupContent += '<br> <a href="http://google.com" target="_blank" >'+ feature.properties.Website + '</a>';
-	  //popupContent += '<br> <a href="' + feature.properties.Website + '" target="_blank" >'+ feature.properties.Address + '</a>';
+	  //popupContent += '<br> <a href="http://google.com" target="_blank" >'+ feature.properties.Website + '</a>';
+	  popupContent += '<br> <a href="' + feature.properties.Website + '" target="_blank" >'+ feature.properties.Address + '</a>';
 	 
 	  layer.bindPopup(popupContent);
 	  
