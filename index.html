@@ -105,15 +105,20 @@
 
   controlLayers.addBaseLayer(terrain, 'Stamen Terrain basemap');
 
-  /* Upload Latitude/Longitude markers from data.csv file, show Title and Website in pop-up, and override initial center and zoom to fit all in map */
+  /* Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
   var customLayer = L.geoJson(null, {
   onEachFeature: function(feature, layer) {
+	  var popupContent = "<strong> " + feature.properties.Title + "</strong>";
+	  
+	  popupContent += '<br> <a href="http://google.com" target="_blank" >'+ feature.properties.Address + '</a>';
+	  //popupContent += '<br> <a href="' + feature.properties.Website + '" target="_blank" >'+ feature.properties.Address + '</a>';
+	 
+	  layer.bindPopup(popupContent);
+	  
     //layer.bindPopup(feature.properties.Title);
-    var popupcontent=feature.properties.Title; 
-    popupcontent+='<br><a href="'+ feature.properties.Website +'" target="blank">' + feature.properties.Website + '</a>';
-    layer.bindPopup(popupcontent);
   }
  });
+    
  var runLayer = omnivore.csv('data.csv', null, customLayer)
  .on('ready', function() {
   map.fitBounds(runLayer.getBounds());
